@@ -20,14 +20,19 @@ describe('CHECK API', function () {
     it('post a user', function (done) {
         supertest(app)
             .post('/users')
-            .send({ name: 'collin' })
-            .expect(200)
+            .send({
+                name: 'collin',
+                email: "richardscollin@gatech.edu",
+                password: "hunter2"
+            })
+            .expect(200, 'test')
             .end(function (err, res) {
                 if (err) {
                     done(err);
+                } else {
+                    //res.status.should.equal(200);
+                    done();
                 }
-                res.status.should.equal(200);
-                done();
             });
     });
 });
