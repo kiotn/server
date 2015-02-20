@@ -24,9 +24,9 @@ router.post('/', function(req, res, next) {
     });
     */
     res.json({
-        username: res.body.name,
-        password: res.body.password,
-        email: res.body.email
+        email: req.body.email,
+        name: req.body.name,
+        password: req.body.password
     });
 });
 

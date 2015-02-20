@@ -18,14 +18,15 @@ describe('CHECK API', function () {
     });
 
     it('post a user', function (done) {
+        var userObj = {
+            email: "richardscollin@gatech.edu",
+            name: 'collin',
+            password: "hunter2"
+        };
         supertest(app)
             .post('/users')
-            .send({
-                name: 'collin',
-                email: "richardscollin@gatech.edu",
-                password: "hunter2"
-            })
-            .expect(200, 'test')
+            .send(userObj)
+            .expect(200, JSON.stringify(userObj))
             .end(function (err, res) {
                 if (err) {
                     done(err);
