@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-/* TODO make this in the right scope*/
+var db = require('../db')('db/test.db');
+
 var successObject = { status: 'success' };
 
 /* Routes for User*/
@@ -10,23 +11,17 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-    /*
-    create-user({
-        username: res.body.name,
-        password: res.body.password,
-        email: res.body.email
-    }, function(err) {
-        if (err) {
-            res.status(500).json(err);
-        } else {
-            res.status(200).json(successObject);
-        }
-    });
-    */
-    res.json({
+    var user = {
         email: req.body.email,
         name: req.body.name,
         password: req.body.password
+    };
+    db.addUser(user, function(err) {
+        if (err) {
+            res.status(500).json(err);
+        } else {
+            res.json(successObject);
+        }
     });
 });
 
