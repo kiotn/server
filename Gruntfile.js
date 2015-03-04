@@ -3,7 +3,7 @@ module.exports = function(grunt) {
         jshint: {
             use_defaults: ['routes/**/*.js', 'app.js'],
             options: {
-                curly: true,
+                //curly: true,
                 eqeqeq: true,
                 node: true,
                 undef: true,
@@ -12,6 +12,8 @@ module.exports = function(grunt) {
             with_overrides: {
                 options: {
                     globals : {
+                        after: true,
+                        before: true,
                         describe: true,
                         it: true,
                     }

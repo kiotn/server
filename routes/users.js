@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
     var user = {
         email: req.body.email,
-        name: req.body.name,
+        name:req.body.name,
         password: req.body.password
     };
     db.addUser(user, function(err) {

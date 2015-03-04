@@ -1,10 +1,10 @@
-var supertest = require('supertest');
-require('should');
+var supertest = require('supertest'),
+    should = require('should');
 
 var app = require('../app');
 
-describe('CHECK API', function () {
-    it('get a user', function (done) {
+describe('Online:', function () {
+    it('access root of server', function (done) {
         supertest(app)
             .get('/')
             .expect(200)
@@ -16,8 +16,23 @@ describe('CHECK API', function () {
                 done();
             });
     });
+});
 
-    it('post a user', function (done) {
+describe('User', function () {
+    it('get a user', function (done) {
+        supertest(app)
+            .get('/users')
+            .expect(200)
+            .end(function (err, res) {
+                if (err) {
+                    done(err);
+                }
+                res.status.should.equal(200);
+                done();
+            });
+    });
+
+    it('create a user', function (done) {
         var userObj = {
             email: "richardscollin@gatech.edu",
             name: 'collin',
